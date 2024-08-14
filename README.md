@@ -1,7 +1,7 @@
 # go tree-sitter
 
-[![Build Status](https://github.com/smacker/go-tree-sitter/workflows/Test/badge.svg?branch=master)](https://github.com/smacker/go-tree-sitter/actions/workflows/test.yml?query=branch%3Amaster)
-[![GoDoc](https://godoc.org/github.com/smacker/go-tree-sitter?status.svg)](https://godoc.org/github.com/smacker/go-tree-sitter)
+[![Build Status](https://github.com/dastrong/go-tree-sitter/workflows/Test/badge.svg?branch=master)](https://github.com/dastrong/go-tree-sitter/actions/workflows/test.yml?query=branch%3Amaster)
+[![GoDoc](https://godoc.org/github.com/dastrong/go-tree-sitter?status.svg)](https://godoc.org/github.com/dastrong/go-tree-sitter)
 
 Golang bindings for [tree-sitter](https://github.com/tree-sitter/tree-sitter)
 
@@ -14,8 +14,8 @@ import (
 	"context"
 	"fmt"
 
-	sitter "github.com/smacker/go-tree-sitter"
-	"github.com/smacker/go-tree-sitter/javascript"
+	sitter "github.com/dastrong/go-tree-sitter"
+	"github.com/dastrong/go-tree-sitter/javascript"
 )
 
 parser := sitter.NewParser()
@@ -46,9 +46,9 @@ fmt.Println(child.EndByte()) // 9
 
 This repository provides grammars for many common languages out of the box.
 
-But if you need support for any other language you can keep it inside your own project or publish it as a separate repository to share with the community. 
+But if you need support for any other language you can keep it inside your own project or publish it as a separate repository to share with the community.
 
-See explanation on how to create a grammar for go-tree-sitter [here](https://github.com/smacker/go-tree-sitter/issues/57).
+See explanation on how to create a grammar for go-tree-sitter [here](https://github.com/dastrong/go-tree-sitter/issues/57).
 
 Known external grammars:
 
@@ -96,6 +96,7 @@ newTree := parser.Parse(tree, newText)
 You can filter AST by using [predicate](https://tree-sitter.github.io/tree-sitter/using-parsers#predicates) S-expressions.
 
 Similar to [Rust](https://github.com/tree-sitter/tree-sitter/tree/master/lib/binding_rust) or [WebAssembly](https://github.com/tree-sitter/tree-sitter/blob/master/lib/binding_web) bindings we support filtering on a few common predicates:
+
 - `eq?`, `not-eq?`
 - `match?`, `not-match?`
 
