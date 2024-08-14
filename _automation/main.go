@@ -231,18 +231,10 @@ func (s *UpdateService) downloadGrammar(ctx context.Context, g *Grammar) {
 	s.makeDir(ctx, g.Language)
 
 	switch g.Language {
-	case "ocaml":
-		s.downloadOcaml(ctx, g)
-	case "typescript":
-		s.downloadTypescript(ctx, g)
 	case "yaml":
 		s.downloadYaml(ctx, g)
-	case "php":
-		s.downloadPhp(ctx, g)
-	case "markdown":
-		s.downloadMarkdown(ctx, g)
-	case "sql":
-		s.downloadSql(ctx, g)
+	case "xml":
+		s.downloadXml(ctx, g)
 	default:
 		s.defaultGrammarDownload(ctx, g)
 	}
@@ -396,6 +388,38 @@ func (s *UpdateService) downloadOcaml(ctx context.Context, g *Grammar) {
 			map[string]string{
 				`<tree_sitter/parser.h>`:   `"parser.h"`,
 				`"../../common/scanner.h"`: `"scanner.h"`,
+			},
+		)
+	}
+}
+
+func (s *UpdateService) downloadXml(ctx context.Context, g *Grammar) {
+	fileMapping := map[string]string{
+		"parser.c":  "xml/src/parser.c",
+		"scanner.c": "xml/src/scanner.c",
+	}
+
+	url := g.ContentURL()
+	s.downloadFile(
+		ctx,
+		fmt.Sprintf("%s/%s/xml/src/tree_sitter/parser.h", url, g.Revision),
+		fmt.Sprintf("%s/parser.h", g.Language),
+		nil,
+	)
+
+	for _, f := range g.Files {
+		fp, ok := fileMapping[f]
+		if !ok {
+			logAndExit(getLogger(ctx), "mapping for file not found", "file", f)
+		}
+
+		s.downloadFile(
+			ctx,
+			fmt.Sprintf("%s/%s/%s", url, g.Revision, fp),
+			fmt.Sprintf("%s/%s", g.Language, f),
+			map[string]string{
+				// `<tree_sitter/parser.h>`:   `"parser.h"`,
+				// `"../../common/scanner.h"`: `"scanner.h"`,
 			},
 		)
 	}

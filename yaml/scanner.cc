@@ -1,4 +1,6 @@
 #include "parser.h"
+
+#include "parser.h"
 #include <cassert>
 
 namespace tree_sitter_yaml {
