@@ -1,4 +1,4 @@
-# go tree-sitter
+# go-tree-sitter
 
 [![Build Status](https://github.com/dastrong/go-tree-sitter/workflows/Test/badge.svg?branch=master)](https://github.com/dastrong/go-tree-sitter/actions/workflows/test.yml?query=branch%3Amaster)
 [![GoDoc](https://godoc.org/github.com/dastrong/go-tree-sitter?status.svg)](https://godoc.org/github.com/dastrong/go-tree-sitter)
